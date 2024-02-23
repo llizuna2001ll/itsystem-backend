@@ -1,0 +1,13 @@
+package com.llizuna2001ll.itsystem;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class ItsystemApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
