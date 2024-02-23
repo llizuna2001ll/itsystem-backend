@@ -1,6 +1,9 @@
-FROM amazoncorretto:17
-VOLUME /tmp
-ARG JAR_FILE=target/*.jar
-COPY ./target/itsystem-0.0.1-SNAPSHOT.jar itsystem.jar
-ENTRYPOINT ["java", "-jar", "/itsystem.jar"]
+FROM maven:3.8.5-openjdk-17 AS build
+COPY . .
+RUN mvn clean package DskipTests
+
+FROM openjdk:17.0.1-jdk-slim
+COPY --from=build /target/itsystem-0.0.1-SNAPSHOT.jar itsystem.jar
 EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "/itsystem.jar"]
